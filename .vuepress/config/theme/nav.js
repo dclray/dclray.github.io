@@ -1,37 +1,37 @@
 module.exports = {
     "nav": [
         {
-        "text": "首页",
-        "link": "/",
-        "icon": "reco-home"
+            "text": "首页",
+            "link": "/",
+            "icon": "reco-home"
         },
         {
-        "text": "TimeLine",
-        "link": "/timeline/",
-        "icon": "reco-date"
+            "text": "TimeLine",
+            "link": "/timeline/",
+            "icon": "reco-date"
         },
         {
-        "text": "Docs",
-        "icon": "reco-message",
-        "items": [
-            {
-            "text": "基础",
-            "link": "/docs/base/"
-            },
-            {
-            "text": "框架",
-            "link": "/docs/frame/"
-            },
-            {
-            "text": "工程化",
-            "link": "/docs/engine/"
-            },
-        ]
+            "text": "Docs",
+            "icon": "reco-message",
+            "items": [
+                {
+                    "text": "基础",
+                    "link": "/docs/base/"
+                },
+                {
+                    "text": "框架",
+                    "link": "/docs/frame/"
+                },
+                {
+                    "text": "工程化",
+                    "link": "/docs/engine/"
+                },
+            ]
         },
         {
-        "text": "GitHub",
-        "icon": "reco-github",
-        "link": "https://github.com/recoluan"
+            "text": "GitHub",
+            "icon": "reco-github",
+            "link": "https://github.com/dclray/dclray.github.io"
         }
         // {
         //   "text": "Contact",
@@ -47,22 +47,22 @@ module.exports = {
     ],
     "sidebar": {
         "/docs/frame/": [
-        "",
-        "theme",
-        "plugin",
-        "api"
+            "",
+            "theme",
+            "plugin",
+            "api"
         ],
         "/docs/base/": [
-        "",
-        "theme",
-        "plugin",
-        "api"
+            "",
+            "theme",
+            "plugin",
+            "api"
         ],
         "/docs/engine/": [
-        "",
-        "theme",
-        "plugin",
-        "api"
+            "",
+            "theme",
+            "plugin",
+            "api"
         ]
     },
 }
