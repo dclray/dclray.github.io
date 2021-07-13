@@ -5,7 +5,7 @@ module.exports = {
   "head": require("./config/head"),
   "theme": "reco",
   "themeConfig":require("./config/themeConfig"),
-  // "plugins":require("./config/plugins"),
+  "plugins":require("./config/plugins"),
   "markdown": {
     "lineNumbers": true
   }
