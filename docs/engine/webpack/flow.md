@@ -9,6 +9,14 @@ sidebar: auto
 graph TD
    程序入口 --> 构建Module --> 构建Chunks -->根据Template生成Comiplation.assets --> 输出文件
 ```
+```mermaid
+graph TD
+   命令行 --> node_modules/.bin/webpack-shell脚本 --> node_modules/webpack/.bin/webpack.js --> webpack-cli/webpack-command通过optimist,convert-argv.js处理参数 --> 调用node_modules/webpack/lib/webpack.js生成compiler对象
+```
+```mermaid
+graph TD
+   build.jswebpack.config.js参数设置文件调用node_modules/webpack/lib/webpack.js生成compiler对象 --> 编译和构建
+```
 
 ### 调试
 1. 假设 `./script/build.js`是你想要开始调试的地址
@@ -20,7 +28,8 @@ graph TD
 
 
 ## 1. shell 与 config 解析
-每次在命令行输入webpack后，操作系统都会去调用`./node_modules/.bin/webpack`这个shell脚本。这个脚本会去调用`./node_modules/webpack/bin/webpack.js`并追加输入的参数，如-p，-w。下面是webpack的启动文件，而$@是后缀参数
+每次在命令行输入webpack后，操作系统都会去调用`./node_modules/.bin/webpack`这个shell脚本。这个脚本会去调用`./webpack/bin/webpack.js`并追加输入的参数，如-p，-w。该webpack.js会去调用`webpack-cli/"webpack-command`使用其中的一个包，在cli/command的包中webpack通过optimist将shell脚本传过来的参数整合成options对象传到了下一个流程的控制对象中。
+下面是webpack启动文件
 ``` bash
 # 这是 ./node_modules/.bin/webpack的 代码 
 #!/bin/sh
@@ -39,7 +48,7 @@ else
 fi
 exit $ret
 ```
-在webpack.js这个文件中webpack通过optimist将用户配置的webpack.config.js和shell脚本传过来的参数整合成options对象传到了下一个流程的控制对象中。
+
 
 ### optimist
 
@@ -85,11 +94,18 @@ options作为最后返回的结果，包含了之后构建阶段所需的重要�
     context: // 工程路径
 }
 ```
+这个对象和webpack.config.js的配置非常相似，只是多了一些经shell传入的插件对象。插件对象一初始化完毕，options也就传入到了下个流程中。
 
+``` javascript
+// 这个是webpack-cli 中cli.js的声明
+var webpack = require("webpack")
+let compiler = webpack(options);
+```
 
 ### 入口
 入口处在`build.js`，可以看到其中的代码是先实例化webpack，然后调用complier的run方法
 ```javascript
+// script/build.js 中用户启动webpack的代码
 function build(build){
     let complier = webpack(config);
     return new Promise((resolve,reject)=>{
@@ -99,12 +115,10 @@ function build(build){
     })
 }
 ```
-### entry-option (compiler)
-### webpack.js
-webpack在node_modules下面的`\webpack\lib\webpack.js`（在此前面有入口参数合并），找到该文件可以看到相关的代码如下
-```javascript
-const webpack = (options,callback)=>{
-    ......
+``` javascript
+//  webpack/lib/webpack.js
+function webpack(options,callback){
+  ......
     let compiler;
     // 处理多个入口
     if(Array.isArray(options)){
@@ -139,6 +153,9 @@ const webpack = (options,callback)=>{
     return compiler;
 }
 ```
+
+
+
 
 
 
