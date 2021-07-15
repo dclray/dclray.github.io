@@ -5,7 +5,7 @@ module.exports = {
     "type": "blog",
     "blogConfig":require("./theme/blogConfig") ,
     //"friendLink": require("./theme/friendLink"),
-    "logo": "/logo.jfif",
+    "logo": "/logo.jpg",
     "search": true,
     "searchMaxSuggestions": 10,
     "lastUpdated": "Last Updated",

@@ -3,7 +3,7 @@ module.exports = [
       "link",
       {
         "rel": "icon",
-        "href": "/logo.jfif"
+        "href": "/logo.jpg"
       }
     ],
     [

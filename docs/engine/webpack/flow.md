@@ -41,6 +41,52 @@ exit $ret
 ```
 在webpack.js这个文件中webpack通过optimist将用户配置的webpack.config.js和shell脚本传过来的参数整合成options对象传到了下一个流程的控制对象中。
 
+### optimist
+
+ 和commander一样，optimist实现了node命令行的解析，optimist是node一个库，用于解析options，options对与optimist来说就是一个hash值
+ ```javascript 
+var optimist = require("optimist");
+optimist
+    .boolean("json").alias("json", "j").describe("json")
+    .boolean("colors").alias("colors", "c").describe("colors")
+    .boolean("watch").alias("watch", "w").describe("watch")
+    ...
+ ```
+获取到后缀参数后，optimist分析参数并以键值对的形式把参数对象保存在optimist.argv中，
+```javascript
+    // webpack --hot -w  经optimist解析后 optimist.argv
+    {
+        hot:true,
+        profile:false,
+        watch:true,
+        ...
+    }
+```
+### config 合并与插件加载（加载webpack默认的一些plugins）
+在加载插件之前，webpack将webpack.config.js中的各个配置项拷贝到options对象中，并加载用户配置在webpack.config.js的plugins。接着optimist.argv会被传入到`./node_modules/webpack/bin/convert-argv.js`中，通过判断argv中参数的值决定是否去加载对应的插件
+``` javascript
+ifBooleanArg("hot",function(){
+    ensureArray(options,"plugins");
+    var HotModuleReplacementPlugin = require("../lib/HotModuleReplacementPlugin");
+    options.plugins.push(new HotModuleReplacementPlugin());
+});
+....
+return options;
+```
+options作为最后返回的结果，包含了之后构建阶段所需的重要信息
+
+``` javascript
+// options 
+{
+    entry:{},// 入口配置
+    output:{}, // 输出配置
+    plugins:[], // 插件集合（配置文件 + shell指令）
+    module:{loaders:[[Object]]}, // 模块配置
+    context: // 工程路径
+}
+```
+
+
 ### 入口
 入口处在`build.js`，可以看到其中的代码是先实例化webpack，然后调用complier的run方法
 ```javascript
@@ -94,16 +140,7 @@ const webpack = (options,callback)=>{
 }
 ```
 
-``` javascript
-// options 
-{
-    entry:{},// 入口配置
-    output:{}, // 输出配置
-    plugins:[], // 插件集合（配置文件 + shell指令）
-    module:{loaders:[[Object]]}, // 模块配置
-    context: // 工程路径
-}
-```
+
 
 
 ## 2. 编译与构建流程
