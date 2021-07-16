@@ -102,8 +102,10 @@ var webpack = require("webpack")
 let compiler = webpack(options);
 ```
 
+## 2. 编译和构建
+
 ### 入口
-入口处在`build.js`，可以看到其中的代码是先实例化webpack，然后调用complier的run方法
+入口处在`build.js`，可以看到其中的代码是先实例化webpack，然后调用complier的run方法，run方法一旦执行后，就开始了编译和构建流程。
 ```javascript
 // script/build.js 中用户启动webpack的代码
 function build(build){
@@ -115,6 +117,7 @@ function build(build){
     })
 }
 ```
+
 ``` javascript
 //  webpack/lib/webpack.js
 function webpack(options,callback){
@@ -135,7 +138,11 @@ function webpack(options,callback){
         // 这里是为了注册插件
         if(options.plugins&& Array.isArray(options.plugins)){
             for(const plugin of options.plugins){
-                plugin.apply(compiler)
+                if(typeof plugin  === "function"){
+                    plugin.call(compiler,compiler)
+                }else{
+                    plugin.apply(compiler)
+                }
             }
         }
         // 触发两个时间点 environment/afterEnviroment
@@ -154,13 +161,25 @@ function webpack(options,callback){
 }
 ```
 
+### 在开始编译和构建流程中有几个比较关键的webpack事件节点
+
+- `compile`开始编译
+- `make`从入口点分析模块及其依赖的模块，创建这些模块对象
+- `build-module`构建模块
+- `after-compile`完成构建
+- `seal`封装构建结果
+- `emit`把各个chunk输出到结果文件
+- `after-emit` 完成输出
+
+
+每个 chunk 的生成就是找到需要包含的 modules。这里大致描述一下 chunk 的生成算法：
+> 1. webpack 先将 entry 中对应的 module 都生成一个新的 chunk
+> 2. 遍历 module 的依赖列表，将依赖的 module 也加入到 chunk 中
+> 3. 如果一个依赖 module 是动态引入的模块，那么就会根据这个 module 创建一个新的 chunk，继续遍历依赖
+> 4. 重复上面的过程，直至得到所有的 chunks
 
 
 
-
-
-
-## 2. 编译与构建流程
 
 
 ## 3.打包输出
