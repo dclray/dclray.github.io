@@ -100,25 +100,29 @@ function flatArray(arr){
 
 ### 防抖实现
 触发完事件 n 秒内不再触发事件，才执行
+立即执行版的意思是触发事件后函数会立即执行，然后 n 秒内不触发事件才能继续执行函数的效果。
 ``` javascript 
 function debounce(func, wait, immediate) {
 	let timer, result;
 	const debounced = (...args) => {
 		if (timer) clearTimeout(timer);
 		if (immediate && !timer) {
-			result = func.apply(this, args)
-            return result;  
+            timer = setTimeout(()=>{
+                timer = null;
+            },wait)
+		    func.apply(this, args)
 		}
-        timer = setTimeout(function(){
-				func.apply(this, args)
-		}, wait);
+        if(!immediate){
+            timer = setTimeout(function(){
+                func.apply(this, args)
+            }, wait);
+        }
+        
 	};
 
 	debounced.prototype.cancel = function() {
 		clearTimeout(timer);
-		timer = null;
 	};
-
 	return debounced;
 }
 ```
@@ -129,40 +133,32 @@ function debounce(func, wait, immediate) {
 
 ``` javascript 
 function throttle(func, wait, options) {
-    var timeout, context, args, result;
-    var previous = 0;
-    if (!options) options = {};
-
-    var later = function() {
-        previous = options.leading === false ? 0 : new Date().getTime();
-        timeout = null;
-        func.apply(context, args);
-        if (!timeout) context = args = null;
-    };
-
-    var throttled = function() {
+    let previous = 0, timeout = null;
+    options = options || {};
+    var throttled = (...args)=> {
         var now = new Date().getTime();
         if (!previous && options.leading === false) previous = now;
         var remaining = wait - (now - previous);
-        context = this;
-        args = arguments;
+
         if (remaining <= 0 || remaining > wait) {
-            if (timeout) {
-                clearTimeout(timeout);
-                timeout = null;
-            }
+
+            if (timeout) clearTimeout(timeout);
             previous = now;
-            func.apply(context, args);
-            if (!timeout) context = args = null;
+            func.apply(this, args);
+
         } else if (!timeout && options.trailing !== false) {
-            timeout = setTimeout(later, remaining);
+
+            timeout = setTimeout(() => {
+                previous = options.leading === false ? 0 : new Date().getTime();
+                timeout = null;
+                func.apply(this, args);
+            }, remaining);
         }
     };
 
     throttled.cancel = function() {
         clearTimeout(timeout);
         previous = 0;
-        timeout = null;
     };
 
     return throttled;
