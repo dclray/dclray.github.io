@@ -87,3 +87,84 @@ function add (a,b){
     return sum;
 }
 ```
+
+### 拍平数组
+``` javascript 
+function flatArray(arr){
+    while(arr.finde(item=>Array.isArray(item))){
+        arr = [].concat(...arr)
+    }
+    return arr;
+}
+```
+
+### 防抖实现
+触发完事件 n 秒内不再触发事件，才执行
+``` javascript 
+function debounce(func, wait, immediate) {
+	let timer, result;
+	const debounced = (...args) => {
+		if (timer) clearTimeout(timer);
+		if (immediate && !timer) {
+			result = func.apply(this, args)
+            return result;  
+		}
+        timer = setTimeout(function(){
+				func.apply(this, args)
+		}, wait);
+	};
+
+	debounced.prototype.cancel = function() {
+		clearTimeout(timer);
+		timer = null;
+	};
+
+	return debounced;
+}
+```
+
+
+### 节流实现
+如果你持续触发事件，每隔一段时间，只执行一次事件
+
+``` javascript 
+function throttle(func, wait, options) {
+    var timeout, context, args, result;
+    var previous = 0;
+    if (!options) options = {};
+
+    var later = function() {
+        previous = options.leading === false ? 0 : new Date().getTime();
+        timeout = null;
+        func.apply(context, args);
+        if (!timeout) context = args = null;
+    };
+
+    var throttled = function() {
+        var now = new Date().getTime();
+        if (!previous && options.leading === false) previous = now;
+        var remaining = wait - (now - previous);
+        context = this;
+        args = arguments;
+        if (remaining <= 0 || remaining > wait) {
+            if (timeout) {
+                clearTimeout(timeout);
+                timeout = null;
+            }
+            previous = now;
+            func.apply(context, args);
+            if (!timeout) context = args = null;
+        } else if (!timeout && options.trailing !== false) {
+            timeout = setTimeout(later, remaining);
+        }
+    };
+
+    throttled.cancel = function() {
+        clearTimeout(timeout);
+        previous = 0;
+        timeout = null;
+    };
+
+    return throttled;
+}
+```
