@@ -56,7 +56,15 @@ module.exports = {
             "",
             "theme",
             "plugin",
-            "api"
+            {
+                tilte:"js杂谈",
+                collapsable:false,
+                children:[
+                   ["js/","js基础"] ,
+                    "js/mastermethod"
+                ]
+            },
+            
         ],
         "/docs/engine/": [
             {
