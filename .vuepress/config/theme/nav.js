@@ -26,6 +26,10 @@ module.exports = {
                     "text": "工程化",
                     "link": "/docs/engine/"
                 },
+                {
+                    "text": "业务",
+                    "link": "/docs/business/"
+                },
             ]
         },
         {
@@ -53,18 +57,23 @@ module.exports = {
             "api"
         ],
         "/docs/base/": [
-            "",
-            "theme",
-            "plugin",
+           {
+                title:"基础篇-杂谈",
+                collapsable:false,
+                children:[
+                    "",
+                    "theme",
+                    "plugin",
+                ]
+           },
             {
-                tilte:"js杂谈",
+                title:"杂谈",
                 collapsable:false,
                 children:[
                    ["js/","js基础"] ,
                     "js/mastermethod"
                 ]
-            },
-            
+            },  
         ],
         "/docs/engine/": [
             {
@@ -86,6 +95,27 @@ module.exports = {
                 ]
             }
            
+        ],
+        "/docs/business/":[
+            {
+                title:"业务",
+                collapsable:false,
+                children:[
+                    "",
+                    "theme",
+                    "plugin",
+                    "api"
+                ]
+            },
+
+            {
+                title:"上传",
+                collapsable:false,
+                children:[
+                   ["upload/","上传相关流程"] ,
+                    "upload/crc"
+                ]
+            },
         ]
     },
 }

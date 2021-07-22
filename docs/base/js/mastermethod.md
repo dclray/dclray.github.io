@@ -1,7 +1,8 @@
 ---
-title: 需要手写实现的方法
-date: 2021-07-16
+sidebar: auto
 ---
+
+# 需手动实现的方法
 
 ### 实现trim
 ```javascript

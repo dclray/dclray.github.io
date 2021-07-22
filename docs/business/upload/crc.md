@@ -1,8 +1,10 @@
 ---
-title: 大文件生成crc32
-date: 2021-07-21
+sidebar: auto
 ---
-### 大文件生成crc32
+
+# 大文件生成crc32
+
+### 代码实现
 ```javascript
 import('../crc32.js');
 
