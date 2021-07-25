@@ -104,14 +104,15 @@ function flatArray(arr){
 立即执行版的意思是触发事件后函数会立即执行，然后 n 秒内不触发事件才能继续执行函数的效果。
 ``` javascript 
 function debounce(func, wait, immediate) {
-	let timer, result;
+	let timer = null;
 	const debounced = (...args) => {
 		if (timer) clearTimeout(timer);
-		if (immediate && !timer) {
+		if (immediate) {
+            let callNow = !timer;
             timer = setTimeout(()=>{
                 timer = null;
             },wait)
-		    func.apply(this, args)
+		    callNow && func.apply(this, args)
 		}
         if(!immediate){
             timer = setTimeout(function(){
@@ -120,8 +121,7 @@ function debounce(func, wait, immediate) {
         }
         
 	};
-
-	debounced.prototype.cancel = function() {
+	debounced.cancel = function() {
 		clearTimeout(timer);
 	};
 	return debounced;
@@ -133,35 +133,74 @@ function debounce(func, wait, immediate) {
 如果你持续触发事件，每隔一段时间，只执行一次事件
 
 ``` javascript 
-function throttle(func, wait, options) {
-    let previous = 0, timeout = null;
-    options = options || {};
-    var throttled = (...args)=> {
-        var now = new Date().getTime();
-        if (!previous && options.leading === false) previous = now;
-        var remaining = wait - (now - previous);
-
-        if (remaining <= 0 || remaining > wait) {
-
-            if (timeout) clearTimeout(timeout);
+function throttle(func, wait, {leading = true, trailing = false} ) {
+    let timer =null, previous = 0;
+    const throttled = (...args)=> {
+        let now = new Date().getTime();
+        // leading（引领，带路） 开头执行 
+        if (leading && now - previous >= wait) {
+            if (timer) {
+                clearTimeout(timer);
+                timer = null;
+            }
             previous = now;
             func.apply(this, args);
-
-        } else if (!timeout && options.trailing !== false) {
-
-            timeout = setTimeout(() => {
-                previous = options.leading === false ? 0 : new Date().getTime();
-                timeout = null;
+        }
+        // trailing（尾随） 结尾执行 
+        if (trailing && !timer) {
+            timer = setTimeout(()=> {
+                timer = null;
                 func.apply(this, args);
-            }, remaining);
+            }, wait);
         }
     };
 
     throttled.cancel = function() {
-        clearTimeout(timeout);
+        clearTimeout(timer);
         previous = 0;
+        timer = null;
     };
 
     return throttled;
 }
+```
+
+### 数组翻转
+``` javascript
+// 使用了双指针的思路
+function reverse(s){
+    let l = -1,r=s.length;
+    while(++l < --r){
+        let v = s[l];
+        s[l] = s[r];
+        s[r] = v;
+    }
+    return s;
+}
+```
+
+### 数字千位分隔符
+``` javascript
+function numFormat(num){
+    return num.toString().replace(/\d+/,function(n){
+        return n.replace(/(\d)(?=(\d{3})+$)/g,function($1){
+            return $1 + ','
+        })
+    })
+}
+```
+
+### 判断回文字符串
+``` javascript
+isPalindrome = function(x) {
+    s = x.toString().split("");
+    let l = -1,r=s.length;
+   while(++l<--r){
+       let v = s[l];
+       s[l] = s[r]
+       s[r] = v ;
+   }
+    s = s.join("")
+   return x.toString() === s
+};
 ```
