@@ -71,7 +71,8 @@ module.exports = {
                 collapsable:false,
                 children:[
                     ["computer/","计算机知识"] ,
-                    "computer/base"
+                    "computer/base",
+                    "computer/algorithm"
                 ]
             },  
             {
@@ -79,7 +80,8 @@ module.exports = {
                 collapsable:false,
                 children:[
                    ["js/","JavaScript知识"] ,
-                    "js/mastermethod"
+                    "js/mastermethod",
+                    
                 ]
             },  
         ],
