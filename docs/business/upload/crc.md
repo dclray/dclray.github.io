@@ -1,8 +1,9 @@
 ---
+title: 大文件生成crc32
+date: 2021-07-22
 sidebar: auto
 ---
 
-# 大文件生成crc32
 
 ### 代码实现
 ```javascript

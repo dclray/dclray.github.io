@@ -1,7 +1,8 @@
 ---
+title: Webpack 工作流程
+date: 2021-07-16
 sidebar: auto
 ---
-# Webpack 工作流程
 
 ## 流程图
 ![An image](/docs/wepack/webpack-flow.jpg)

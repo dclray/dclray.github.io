@@ -66,11 +66,19 @@ module.exports = {
                     "plugin",
                 ]
            },
-            {
-                title:"杂谈",
+           {
+                title:"计算机",
                 collapsable:false,
                 children:[
-                   ["js/","js基础"] ,
+                    ["computer/","计算机知识"] ,
+                    "computer/base"
+                ]
+            },  
+            {
+                title:"JavaScript",
+                collapsable:false,
+                children:[
+                   ["js/","JavaScript知识"] ,
                     "js/mastermethod"
                 ]
             },  
@@ -90,7 +98,7 @@ module.exports = {
                 title:"Webpack",
                 collapsable:false,
                 children:[
-                    ["webpack/","基础"],
+                    ["webpack/","Webpack知识"],
                     "webpack/flow"
                 ]
             }
@@ -112,7 +120,7 @@ module.exports = {
                 title:"上传",
                 collapsable:false,
                 children:[
-                   ["upload/","上传相关流程"] ,
+                   ["upload/","上传知识"] ,
                     "upload/crc"
                 ]
             },

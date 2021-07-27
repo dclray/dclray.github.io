@@ -1,8 +1,8 @@
 ---
+title: 需掌握的方法
+date: 2021-07-22
 sidebar: auto
 ---
-
-# 需手动实现的方法
 
 ### 实现trim
 ```javascript
