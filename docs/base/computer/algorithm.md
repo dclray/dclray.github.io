@@ -63,3 +63,39 @@ function reverseList (head){
   return prev;
 }
 ```
+### 判断链表是否有环
+``` javascript
+function hasCycle(head){
+    if(head ===null) return false;
+    let fast = head,slow = head;
+    while(fast !==null && fast.next !== null){
+        fast = fast.next.next;
+        slow = slow.next;
+        if(fast === slow){
+            return true
+        }
+    }
+    return false;
+}
+```
+### 给定一个只包括 ”(“，“)”，“{”，“}”，“[”，“]” 的字符串 s ，判断字符串是否有效。
+```javascript 
+function isValid(s){
+    let m = new Map([['(',')'],['{','}'],['[',']']]);
+    let stack = [];
+    for(let i = 0; i < s.length; i++){
+        if(m.has(s[i])){
+            stack.push(m.get(s[i]));
+        }else{
+            if(stack.pop() !== s[i]){
+                return false
+            }
+        }
+    }
+    if(stack.length > 0){
+        return false
+    }else{
+        return true;
+    }
+}
+```
