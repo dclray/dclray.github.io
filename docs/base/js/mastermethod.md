@@ -133,16 +133,12 @@ function debounce(func, wait, immediate) {
 如果你持续触发事件，每隔一段时间，只执行一次事件
 
 ``` javascript 
-function throttle(func, wait, {leading = true, trailing = false} ) {
+function throttle(func, wait, {leading = true, trailing = false} = {} ) {
     let timer =null, previous = 0;
     const throttled = (...args)=> {
         let now = new Date().getTime();
         // leading（引领，带路） 开头执行 
         if (leading && now - previous >= wait) {
-            if (timer) {
-                clearTimeout(timer);
-                timer = null;
-            }
             previous = now;
             func.apply(this, args);
         }
