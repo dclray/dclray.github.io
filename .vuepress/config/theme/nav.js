@@ -83,7 +83,22 @@ module.exports = {
             "",
             "theme",
             "plugin",
-            "api"
+            "api",
+            {
+                title:"Vue",
+                collapsable:false,
+                children:[
+                    ["vue/","Vue"]
+                ]
+            },
+            {
+                title:"React",
+                collapsable:false,
+                children:[
+                    ["react/","React"],
+                    "react/hooks"
+                ]
+            }
         ],
         "/docs/engine/": [
             {
