@@ -33,3 +33,15 @@ bit3 = 0x08 = 00001000	<br/>
  (-4>>>0) & 32 = 32;
  (-4>>>0) & 1024 = 1024;
 ```
+
+## 二进制，八进制，十六进制表示方法
+- 二进制，前缀是0b
+- 八进制，前缀是0o
+- 十进制，没有前缀
+- 十六进制，前缀是0x
+```javascript
+let decimalInteger = 17;
+let binaryInteger = 0b1001; // 二进制的17
+let octalInteger = 0o21; // 八进制的17
+let hexadecimalInteger = 0x11; //十六进制的17
+```

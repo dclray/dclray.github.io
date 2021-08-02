@@ -50,12 +50,6 @@ module.exports = {
         // }
     ],
     "sidebar": {
-        "/docs/frame/": [
-            "",
-            "theme",
-            "plugin",
-            "api"
-        ],
         "/docs/base/": [
            {
                 title:"基础篇-杂谈",
@@ -84,6 +78,12 @@ module.exports = {
                     "js/string"  
                 ]
             },  
+        ],
+        "/docs/frame/": [
+            "",
+            "theme",
+            "plugin",
+            "api"
         ],
         "/docs/engine/": [
             {
