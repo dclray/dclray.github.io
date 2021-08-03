@@ -10,25 +10,26 @@ module.exports = {
             "link": "/timeline/",
             "icon": "reco-date"
         },
+
         {
-            "text": "Docs",
+            "text": "心得",
             "icon": "reco-message",
             "items": [
                 {
                     "text": "基础",
-                    "link": "/docs/base/"
+                    "link": "/experience/base/"
                 },
                 {
                     "text": "框架",
-                    "link": "/docs/frame/"
+                    "link": "/experience/frame/"
                 },
                 {
                     "text": "工程化",
-                    "link": "/docs/engine/"
+                    "link": "/experience/engine/"
                 },
                 {
                     "text": "业务",
-                    "link": "/docs/business/"
+                    "link": "/experience/business/"
                 },
             ]
         },
@@ -50,7 +51,7 @@ module.exports = {
         // }
     ],
     "sidebar": {
-        "/docs/base/": [
+        "/experience/base/": [
            {
                 title:"基础篇-杂谈",
                 collapsable:false,
@@ -79,7 +80,7 @@ module.exports = {
                 ]
             },  
         ],
-        "/docs/frame/": [
+        "/experience/frame/": [
             "",
             "theme",
             "plugin",
@@ -100,7 +101,7 @@ module.exports = {
                 ]
             }
         ],
-        "/docs/engine/": [
+        "/experience/engine/": [
             {
                 title:"工程化",
                 collapsable:false,
@@ -121,7 +122,7 @@ module.exports = {
             }
            
         ],
-        "/docs/business/":[
+        "/experience/business/":[
             {
                 title:"业务",
                 collapsable:false,
