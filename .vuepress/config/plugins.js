@@ -5,9 +5,15 @@ module.exports = [
         {
           audios: [
             {
+              name: '静悄悄',
+              artist: '花花',
+              url: '/music/花花不会唱古风 - 静悄悄（翻自 大泫）.flac',
+              cover: '/logo.jpg'
+            },
+            {
               name: '共同渡过',
               artist: '张国荣',
-              url: 'http://www.ihaoge.net/kw/antiserver.kuwo.cn/anti.s?rid=MUSIC_27175854&response=res&format=mp3|aac&type=convert_url&br=128kmp3&agent=iPhone&callback=getlink&jpcallback=getlink.mp3',
+              url: '/music/张国荣-共同渡过.flac',
               cover: '/music/Leslie.jpeg'
             },
           ]

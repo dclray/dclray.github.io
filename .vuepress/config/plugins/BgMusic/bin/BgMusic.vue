@@ -1,7 +1,7 @@
 <template>
   <div class="reco-bgm-panel">
     <!-- 播放器 -->
-    <audio id="bgm" :src="audio[curIndex].url" ref="bgm" @ended="bgmEnded" @canplay="playReady" @timeupdate="timeUpdate"></audio>
+    <audio id="bgm" :src="audio[curIndex].url" loop ref="bgm" @ended="bgmEnded" @canplay="playReady" @timeupdate="timeUpdate"></audio>
     <module-transition :position="floatPosition">
       <div v-show="isFloat" @click="changeBgmInfo(false)" class="reco-float-box" :style="floatStyle">
         <img :src="audio[curIndex].cover">
