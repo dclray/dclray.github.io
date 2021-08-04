@@ -4,16 +4,15 @@ date: 2021-07-13
 sidebar: auto
 ---
 JavaScript 是 Web 的编程语言。所有现代的 HTML 页面都使用 JavaScript。JavaScript 非常容易学。
->本文档主要是梳理JavaScript中常用的概念
-## 执行上下文、作用域链、闭包
+::: tip 
+本文档主要是梳理JavaScript中常用的概念
+:::
+本栏的主要内容如下：
 
-### 词法作用域和动态作用域
-
-### 作用域链
-
-### 闭包
-#### this/call/apply/bind
-
+## 作用域
+- [执行上下文](./context.md)
+- [作用域](./scope.md)
+- [闭包](./closure.md)
 ## 原型链、继承
 
 ## Promise

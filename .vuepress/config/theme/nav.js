@@ -76,7 +76,8 @@ module.exports = {
                 children:[
                    ["js/","JavaScript知识"] ,
                     "js/mastermethod",
-                    "js/string"  
+                    "js/string",
+                    "js/context"  
                 ]
             },  
         ],
