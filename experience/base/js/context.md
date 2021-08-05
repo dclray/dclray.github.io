@@ -96,4 +96,62 @@ FunctionExectionContext = {
 ### 变量环境：
 它同样是一个词法环境，其环境记录器持有变量声明语句在执行上下文中创建的绑定关系。</br>
 如上所述，变量环境也是一个词法环境，所以它有着上面定义的词法环境的所有属性。</br>
-在ES6中，词法环境组件和变量环境的一个不同就是前者被用来存储函数声明和变量（`let`和`const`）绑定，而后者只用来存储`var`变量绑定
+在ES6中，词法环境组件和变量环境的一个不同就是前者被用来存储函数声明和变量（`let`和`const`）绑定，而后者只用来存储`var`变量绑定。</br>
+样例代码：
+```javascript
+let a = 20;
+const b = 30;
+var c ;
+function multiply(e,f){
+    var g = 20;
+    return e* f* g;
+}
+c = multify(a,b)
+```
+用伪代码表示执行上下文：
+```javascript 
+GlobalExectionContext = {
+    ThisBinding:<Global Object>,
+    LexicalEnvironment:{
+        EnvironmentRecord:{
+            Type:"Object",
+            a:<uninitialized>,
+            b:<uninitialized>,
+            multiply:<func>
+        }
+        outer:<null>
+    }
+    VariableEnvironment:{
+        EnvironmentRecord:{
+            Type:"Object",
+            c:undefined
+        }
+        outer:<null>
+    }
+}
+FunctionExectionContext = {
+    ThisBinding:<Global Object>,
+    LexicalEnvironment:{
+        EnvironmentRecord:{
+            Type:"Declarative",
+            Arguments:{0:20,1:30,length:2}
+        },
+        outer:<GlobalLexicalEnvironment>
+    },
+    VariableEnvironment:{
+        EnvironmentRecord:{
+            Type:"Declarative",
+            g:undefined
+        },
+        outer:<GlobalLexicalEnvironment>
+    }
+}
+
+```
+:::tip
+注意 —— 只有遇到调用函数`multiply`时，函数执行上下文才会被创建。
+:::
+`let`和`const`定义的变量并没有关联任何值，但`var`定义的变量被设成了`undefined`。</br>
+这是因为在创建阶段时，引擎检查代码找出变量和函数声明，虽然函数声明完全存储在环境中，但是变量最初设置为`undefined`（var的情况下），或者未初始化（`let`和`const`情况下）。</br>
+这就是为什么可以在声明之前访问`var`定义的变量（虽然是 `undefined`），但是在声明之前访问`let`和`const`的变量会得到一个引用错误。</br>
+这就是我们说的[**变量声明提升**](./declaration.md) 

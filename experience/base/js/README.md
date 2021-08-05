@@ -11,6 +11,7 @@ JavaScript 是 Web 的编程语言。所有现代的 HTML 页面都使用 JavaSc
 
 ## 作用域
 - [执行上下文](./context.md)
+- [声明提升](./declaration.md)
 - [作用域](./scope.md)
 - [闭包](./closure.md)
 ## 原型链、继承

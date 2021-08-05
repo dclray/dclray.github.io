@@ -77,7 +77,6 @@ module.exports = {
                    ["js/","JavaScript知识"] ,
                     "js/mastermethod",
                     "js/string",
-                    "js/context"  
                 ]
             },  
         ],
