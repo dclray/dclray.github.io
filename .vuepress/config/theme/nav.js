@@ -16,8 +16,24 @@ module.exports = {
             "icon": "reco-message",
             "items": [
                 {
-                    "text": "基础",
-                    "link": "/experience/base/"
+                    "text": "计算机",
+                    "link": "/experience/computer/"
+                },
+                {
+                    "text": "数据结构和算法",
+                    "link": "/experience/datastructure/"
+                },
+                {
+                    "text": "浏览器",
+                    "link": "/experience/browser/"
+                },
+                {
+                    "text": "网络",
+                    "link": "/experience/network/"
+                },
+                {
+                    "text": "网页",
+                    "link": "/experience/webpage/"
                 },
                 {
                     "text": "框架",
@@ -51,23 +67,53 @@ module.exports = {
         // }
     ],
     "sidebar": {
-        "/experience/base/": [
-           {
-                title:"基础篇-杂谈",
-                collapsable:false,
-                children:[
-                    "",
-                    "theme",
-                    "plugin",
-                ]
-           },
+        "/experience/computer/": [
            {
                 title:"计算机",
                 collapsable:false,
                 children:[
-                    ["computer/","计算机知识"] ,
-                    "computer/base",
-                    "computer/algorithm"
+                    "",
+                    "base",
+                ]
+            },
+           
+        ],
+        "/experience/datastructure/":[
+            {
+                title:"数据结构和算法",
+                collapsable:false,
+                children:[
+                    "",
+                    "algorithm"
+                ]
+            },
+        ],
+        "/experience/browser/": [
+             {
+                 title:"浏览器",
+                 collapsable:false,
+                 children:[
+                     ""
+                 ]
+             },  
+         ],
+
+         "/experience/network/": [
+            {
+                title:"网络",
+                collapsable:false,
+                children:[
+                    ""
+                ]
+            },  
+            
+        ],
+        "/experience/webpage/": [
+            {
+                title:"网页",
+                collapsable:false,
+                children:[
+                    ""
                 ]
             },  
             {
@@ -80,11 +126,9 @@ module.exports = {
                 ]
             },  
         ],
+
         "/experience/frame/": [
             "",
-            "theme",
-            "plugin",
-            "api",
             {
                 title:"Vue",
                 collapsable:false,
@@ -107,9 +151,6 @@ module.exports = {
                 collapsable:false,
                 children:[
                     "",
-                    "theme",
-                    "plugin",
-                    "api"
                 ]
             },
             {
@@ -127,10 +168,7 @@ module.exports = {
                 title:"业务",
                 collapsable:false,
                 children:[
-                    "",
-                    "theme",
-                    "plugin",
-                    "api"
+                    ""
                 ]
             },
 
