@@ -44,10 +44,19 @@ module.exports = {
                     "link": "/experience/engine/"
                 },
                 {
+                    "text": "容器化",
+                    "link": "/experience/container/"
+                },
+                {
                     "text": "业务",
                     "link": "/experience/business/"
                 },
             ]
+        },
+        {
+            "text": "资源",
+            "link": "/resources/list",
+            "icon": "reco-api"
         },
         {
             "text": "GitHub",
@@ -93,7 +102,9 @@ module.exports = {
                  title:"浏览器",
                  collapsable:false,
                  children:[
-                     ""
+                     "",
+                     "framework",
+                     "work"
                  ]
              },  
          ],
@@ -109,22 +120,37 @@ module.exports = {
             
         ],
         "/experience/webpage/": [
+            ["","网页内容"],
             {
-                title:"网页",
-                collapsable:false,
+                title:"HTML",
                 children:[
-                    ""
+                    ["html/","HTML导航"]
+                ]
+            },  
+            {
+                title:"CSS",
+                children:[
+                    ["css/","CSS导航"]
                 ]
             },  
             {
                 title:"JavaScript",
-                collapsable:false,
                 children:[
-                   ["js/","JavaScript知识"] ,
+                   ["js/","JavaScript导航"],
+                   {
+                       title:"JavaScript核心概念",
+                       children:[
+                        "js/context",
+                        "js/declaration",
+                        "js/scope",
+                        "js/closure"
+                       ]
+                   },
                     "js/mastermethod",
                     "js/string",
                 ]
-            },  
+            },
+           
         ],
 
         "/experience/frame/": [
@@ -162,6 +188,16 @@ module.exports = {
                 ]
             }
            
+        ],
+        "/experience/container/":[
+            {
+                title:"容器化",
+                collapsable:false,
+                children:[
+                    ""
+                ]
+            },  
+            
         ],
         "/experience/business/":[
             {

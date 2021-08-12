@@ -220,3 +220,20 @@ function isPrime(num){
     return true;
 }
 ```
+
+### 16进制转为rgb
+```javascript
+function fromHex (color){
+    let t ={}, bits = color.length === 4 ? 4 : 8, mask = (1 << bits) - 1;
+    color = Number(`0x${color.substr(1)}`);
+    if(isNaN(color)){return null}
+    ["b","g","r"].forEach(function(x){
+        let c = color & mask;
+        t[x] = bits === 4 ? 17 * c : c;
+        color = color >> bits;
+    })
+    t.a = 1;
+    return t;
+}
+```
+
