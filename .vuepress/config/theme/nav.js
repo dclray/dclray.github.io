@@ -114,7 +114,8 @@ module.exports = {
                 title:"网络",
                 collapsable:false,
                 children:[
-                    ""
+                    "",
+                    "netmodle"
                 ]
             },  
             
