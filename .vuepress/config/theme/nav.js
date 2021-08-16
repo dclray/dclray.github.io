@@ -115,7 +115,9 @@ module.exports = {
                 collapsable:false,
                 children:[
                     "",
-                    "netmodle"
+                    "netmodle",
+                    "tcp",
+                    "tcpconnect"
                 ]
             },  
             
