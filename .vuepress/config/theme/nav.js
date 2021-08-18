@@ -104,7 +104,8 @@ module.exports = {
                  children:[
                      "",
                      "framework",
-                     "work"
+                     "work",
+                     "tabcommunication"
                  ]
              },  
          ],
