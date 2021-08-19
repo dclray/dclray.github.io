@@ -105,7 +105,8 @@ module.exports = {
                      "",
                      "framework",
                      "work",
-                     "tabcommunication"
+                     "tabcommunication",
+                     "hashhistory"
                  ]
              },  
          ],
