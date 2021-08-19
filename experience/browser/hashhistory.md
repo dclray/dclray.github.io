@@ -1,5 +1,5 @@
 ---
-title: 前端的两种路由模式：hash模式和history模式
+title: 前端的两种路由模式
 date: 2021-08-19
 sidebar: auto
 ---
@@ -29,7 +29,14 @@ sidebar: auto
 - 当浏览器地址栏中URL包含哈希如`http://www.baidu.com/#home`，这是按下输入，浏览器发送`http://www.baidu.com/`请求至服务器，请求完毕之后设置散列值为#home，进而触发`onhashchange`事件；
 - 当只改变浏览器地址栏URL的哈希部分，这时按下回车，浏览器不会发送任何请求至服务器，这时发生的只是散列值新修改的哈希值，并触发`onhashchange`事件
 - html中a标签的属性href可以设置为页面的元素ID如#top，当点击该链接时页面跳转至该id元素所在区域，同时浏览器自动设置`window.location.hash`属性，地址栏中的哈希值也会改变，并触发`onhashchange`事件
-
+```javascript
+    // 设置url的hash，回在当前url后加上#abc
+    window.location.hash = 'abc';
+    let hash  = window.location.hash; // '#abc'
+    window.addEventListener('hashchange',(e)=>{
+        // 监听hash变化，点击浏览器的前进后退会触发
+    })
+```
 ## history模式
 - `window.history`属性指向History对象，它表示当前窗口的浏览历史。当发生改变时，只会改变页面的路径，不会刷新页面
 - History对象保存了当前窗口访问过所有页面网址。通过`history.length`可以得出当前窗口一共访问过几个网址
@@ -87,3 +94,7 @@ window.addEventListener('popstate',(e)=>{
 })
 ```
 缺点：当改变页面地址后，强制刷新浏览器时，（如果后端没有做准备的话）会报错，因为刷新时那当前地址去请求服务器的，如果服务器中没有相应的页面，会出现404页面
+
+## 总结
+- hash模式主要是通过监听hashchange事件获得hash值的改变，从而改变网页的内容
+- history模式主要是通过监听popstate事件获得history对象的改变，从而改变网页的内容
