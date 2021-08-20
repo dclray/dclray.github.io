@@ -1,5 +1,5 @@
 ---
-title: 前端的两种路由模式
+title: 两种路由模式
 date: 2021-08-19
 sidebar: auto
 ---

@@ -81,7 +81,7 @@ module.exports = {
                 title:"计算机",
                 collapsable:false,
                 children:[
-                    "",
+                    ["","计算机导航"],
                     "base",
                 ]
             },
@@ -92,7 +92,7 @@ module.exports = {
                 title:"数据结构和算法",
                 collapsable:false,
                 children:[
-                    "",
+                    ["","数据机构和算法导航"],
                     "algorithm"
                 ]
             },
@@ -102,11 +102,12 @@ module.exports = {
                  title:"浏览器",
                  collapsable:false,
                  children:[
-                     "",
+                     ["","浏览器导航"],
                      "framework",
                      "work",
                      "tabcommunication",
-                     "hashhistory"
+                     "hashhistory",
+                     "worker"
                  ]
              },  
          ],
@@ -116,7 +117,7 @@ module.exports = {
                 title:"网络",
                 collapsable:false,
                 children:[
-                    "",
+                    ["","网络导航"],
                     "netmodle",
                     "tcp",
                     "tcpconnect"
@@ -125,7 +126,7 @@ module.exports = {
             
         ],
         "/experience/webpage/": [
-            ["","网页内容"],
+            ["","网页导航"],
             {
                 title:"HTML",
                 children:[
@@ -159,19 +160,19 @@ module.exports = {
         ],
 
         "/experience/frame/": [
-            "",
+            ["","框架导航"],
             {
                 title:"Vue",
                 collapsable:false,
                 children:[
-                    ["vue/","Vue"]
+                    ["vue/","Vue导航"]
                 ]
             },
             {
                 title:"React",
                 collapsable:false,
                 children:[
-                    ["react/","React"],
+                    ["react/","React导航"],
                     "react/hooks"
                 ]
             }
@@ -181,14 +182,14 @@ module.exports = {
                 title:"工程化",
                 collapsable:false,
                 children:[
-                    "",
+                    ["","工程化导航"],
                 ]
             },
             {
                 title:"Webpack",
                 collapsable:false,
                 children:[
-                    ["webpack/","Webpack知识"],
+                    ["webpack/","Webpack导航"],
                     "webpack/flow"
                 ]
             }
@@ -199,7 +200,10 @@ module.exports = {
                 title:"容器化",
                 collapsable:false,
                 children:[
-                    ""
+                    ["","容器化导航"],
+                    "kubernetes",
+                    "helm",
+                    "docker"
                 ]
             },  
             
@@ -209,7 +213,7 @@ module.exports = {
                 title:"业务",
                 collapsable:false,
                 children:[
-                    ""
+                    ["","业务导航"]
                 ]
             },
 

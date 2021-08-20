@@ -1,5 +1,5 @@
 ---
-title: Chrome 浏览器架构
+title: 浏览器架构
 date: 2021-08-12
 sidebar: auto
 ---

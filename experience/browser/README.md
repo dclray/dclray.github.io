@@ -11,3 +11,6 @@ sidebar: auto
 ## 浏览器架构
 - [浏览器架构](./framework.md)
 - [浏览器工作原理](./work.md)
+- [跨标签页通信](./tabcommunication.md)
+- [两种路由模式](./hashhistory.md)
+- [Worker种类](./worker.md)
