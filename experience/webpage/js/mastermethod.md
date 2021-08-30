@@ -236,4 +236,157 @@ function fromHex (color){
     return t;
 }
 ```
+### compose 
+```javascript 
+    function fn1 (x){ return x + 1 }
+    function fn2 (x){ return x + 2 }
+    function fn3 (x){ return x + 3 }
+    function fn4 (x){ return x + 4 }
+    const a = compose(fn1,fn2,fn3,fn4)
+    console.log(a(1)) // 1+4+3+2+1 = 11;
+
+    function compose(...fns){
+        if(fns.length ===0){return (v)=>v}
+        if(fns.length ===1){return fns[0]}
+        return fns.reduce((pre,cur)=>{
+            return (...args)=>{
+                return pre(cur(...args))
+            }
+        }})
+    }
+```
+### 实现lazyMan
+```javascript
+    // 实现一个LazyMan 可以按照一下方式调用
+    LazyMan("Hank")
+    // Hi ! This is Hank
+    LazyMan('Hank').sleep(10).eat("dinner")
+    // Hi ,This is Hank  
+    // 等待10s
+    // wake up after 10
+    // Eat dinner
+    LazyMan("Hank").eat("dinner").eat("supper")
+    // Hi This is Hank
+    // eat dinner
+    // eat supper
+    LazyMan("Hank").eat("supper").sleepFirst(5)
+    // 等待5s 
+    // wake up after 5s
+    // Hi this is Hank
+    // eat supper
+```
+```javascript
+    class _lazyMan {
+        constructor(name){
+            this.tasks = [];
+            const task = ()=>{
+                console.log(`Hello, This is ${name}`)
+                this.next()
+            }
+            this.tasks.push(task)
+            setTimeout(()=>{
+                this.next()
+            },0)
+        }
+        next(){
+            const task = this.tasks.shift()
+            task && task()
+        }
+        sleep(time){
+            this._sleepWrapper(time,false)
+            return this
+        }
+        sleepFirst(time){
+            this._sleepWrapper(time,true)
+            return this
+        }
+        _sleepWrapper(time,first){
+            const task = ()=>{
+                setTimeout(()=>{
+                    console.log(`sleep ${time}`)
+                    this.next()
+                },time)
+            }
+            if(first){
+                this.tasks.unshift(task)
+            }else{
+                this.tasks.push(task)
+            }
+        }
+        eat(name){
+            const task = ()=>{
+                console.log(`eat ${name}`)
+                this.next()
+            }
+            this.tasks.push(task);
+            return this;
+        }
+    }
+    function LazyMan(name){
+        return new _lazyMan(name)
+    }
+```
+
+### 版本号排序
+一组版本号`['0.1.1', '2.3.3', '0.302.1', '4.2', '4.3.5', '4.3.4.5']`，现在需要对其排序
+```javascript
+    const arr = ['0.1.1', '2.3.3', '0.302.1', '4.2', '4.3.5', '4.3.4.5'];
+    arr.sort((a,b)=>{
+        let i = 0;
+        const arr1 = a.split('.'),arr2 = b.split('.');
+        while(true){
+            const s1 = arr1[i],s2 = arr2[i];
+            i++;
+            if(s1 === undefined || s2 === undefined){
+                return arr2.length - arr1.length;
+            }
+            if(s1 === s2) continue;
+            return s2 - s1;
+        }
+    })
+```
+
+### LRU 算法
+设计和实现一个LRU缓存机制，它应该支持以下操作：获取数据`get`和写入数据`put`</br>
+获取数据`get(key)` 如果密钥（key）存在于缓存中，则获取密钥的值（总是正数），否则返回-1</br>
+写入数据`put(key,value)` 如果密钥已经存在，则变更其数据；如果密钥不存在，则插入该组值。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间
+```javascript
+    class LRUCache(){
+        constructor(capacity){
+            this.secretKey = new Map();
+            this.capacity = capacity;
+        }
+        get(key){
+            if(this.secretKey.has(key)){
+                let tempValue = this.secretKey.get(key)
+                this.secretKey.delete(key);
+                this.secretKey.set(key,tempValue)
+                return tempValue
+            }else{
+                return -1;
+            }
+        }
+        put(key,value){
+            if(this.secretKey.has(key)){
+                this.secretkey.delete(key)
+                this.secretKey.set(key,value)
+            }else if(this.secretKey.size < this.capacity>){
+                this.secretKey.set(key,value)
+            }else{
+                this.secretkey.set(key,value);
+                this.secretkey.delete(this.secretKey.keys().next().value)
+            }
+        }
+    }
+// let cache = new LRUCache(2);
+// cache.put(1, 1);
+// cache.put(2, 2);
+// console.log("cache.get(1)", cache.get(1))// 返回  1
+// cache.put(3, 3);// 该操作会使得密钥 2 作废
+// console.log("cache.get(2)", cache.get(2))// 返回 -1 (未找到)
+// cache.put(4, 4);// 该操作会使得密钥 1 作废
+// console.log("cache.get(1)", cache.get(1))// 返回 -1 (未找到)
+// console.log("cache.get(3)", cache.get(3))// 返回  3
+// console.log("cache.get(4)", cache.get(4))// 返回  4
+```
 
