@@ -2,6 +2,7 @@
   "name": "devin-tree-house",
   "version": "1.0.0",
   "author": "Devin",
+  "homepage":"https://dclray.github.io",
   "scripts": {
     "dev": "vuepress dev . --open --host \"localhost\"",
     "build": "vuepress build ."
