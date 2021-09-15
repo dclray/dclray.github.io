@@ -276,6 +276,7 @@ function fromHex (color){
     // eat supper
 ```
 ```javascript
+// 借鉴generate 方式使用next调用
     class _lazyMan {
         constructor(name){
             this.tasks = [];
@@ -325,12 +326,58 @@ function fromHex (color){
     function LazyMan(name){
         return new _lazyMan(name)
     }
+    // 使用promise 
+  function createPerson(){
+    let toList = []
+    setTimeout(async ()=>{
+        for (let todo of toList){
+            await todo()
+        }
+    },0)
+
+    return {
+        eat(something){
+            toList.push(function(){
+                console.log(`Eat ${something}~`)
+            })
+            return this
+        },
+        sleep(time){
+            let promise =function(){
+                return new Promise((resolve,reject)=>{
+                    setTimeout(()=>{
+                        resolve(console.log(`Wake up after ${time}`))
+                    },time)
+                })
+            }
+            toList.push(promise)
+            return this
+        },
+        sleepFirst(time){
+            let promise =function(){
+                return new Promise((resolve,reject)=>{
+                    setTimeout(()=>{
+                        resolve(console.log(`Wake up after ${time}`))
+                    },time)
+                })
+            }
+            toList.shift(promise)
+            return this
+        }
+    }
+}
+
+
+
+createPerson('Devin').sleep(10000).eat('dinner').eat('supper')
+
 ```
 
 ### 版本号排序
 一组版本号`['0.1.1', '2.3.3', '0.302.1', '4.2', '4.3.5', '4.3.4.5']`，现在需要对其排序
 ```javascript
     const arr = ['0.1.1', '2.3.3', '0.302.1', '4.2', '4.3.5', '4.3.4.5'];
+    // while 循环
     arr.sort((a,b)=>{
         let i = 0;
         const arr1 = a.split('.'),arr2 = b.split('.');
@@ -342,6 +389,20 @@ function fromHex (color){
             }
             if(s1 === s2) continue;
             return s2 - s1;
+        }
+    })
+    // for 循环
+    arr.sort((a,b)=>{
+        const arr1 = a.split("."),arr2 = b.split(".");
+        let maxlength = Math.max(arr1.length,arr2.length);
+        for(let i =0;i< maxlength; i++){
+            const s1 = arr1[i],s2= arr2[i];
+            if(s1 === undefined || s2 === undefined){
+                return arr2.length - arr1.length
+            }
+            if(s1 !== s2) {
+                return  s2- s1;
+            }
         }
     })
 ```
