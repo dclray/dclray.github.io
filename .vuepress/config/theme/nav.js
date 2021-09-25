@@ -120,13 +120,17 @@ module.exports = {
                     ["","网络导航"],
                     "netmodle",
                     "tcp",
-                    "tcpconnect"
+                    "tcpconnect",
+                    "http",
+                    "websocket",
+                    "security"
                 ]
             },  
             
         ],
         "/experience/webpage/": [
             ["","网页导航"],
+            "optimize",
             {
                 title:"HTML",
                 children:[
@@ -165,7 +169,8 @@ module.exports = {
                 title:"Vue",
                 collapsable:false,
                 children:[
-                    ["vue/","Vue导航"]
+                    ["vue/","Vue导航"],
+                    "vue/interview"
                 ]
             },
             {
@@ -173,6 +178,7 @@ module.exports = {
                 collapsable:false,
                 children:[
                     ["react/","React导航"],
+                    "react/principle",
                     "react/hooks"
                 ]
             }
@@ -190,7 +196,8 @@ module.exports = {
                 collapsable:false,
                 children:[
                     ["webpack/","Webpack导航"],
-                    "webpack/flow"
+                    "webpack/flow",
+                    "webpack/principle"
                 ]
             }
            

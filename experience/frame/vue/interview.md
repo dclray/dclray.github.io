@@ -134,3 +134,19 @@ Vue2.0中，随着功能的增加，组件变得越来越复杂，越来越难�
 使用SSR的好处：
 - 有利于SEO：其实就是有利于爬虫来爬你的页面，因为部分页面爬虫是不支持执行JavaScript的，这种不支持执行JavaScript的爬虫抓取到非SSR的页面会是一个空的HTML页面，而有了SSR以后，这些爬虫就可以获取到完整的HTML结构的数据，进而收录到搜索引擎中。
 - 白屏时间更短：相对于客户端渲染，服务端渲染在浏览器请求URL之后已经得到了一个带有数据的HTML文本，浏览器只需要解析HTML，直接构建DOM树就可以。而客户端渲染，需要先得到一个空的HTML页面，这个时候页面已经进入白屏，之后还需要经过加载并执行JavaScript、请求后端服务器获取数据、JavaScript渲染页面几个过程才可以看到最后的页面。特别是在复杂应用中，由于需要加载JavaScript脚本，越是复杂的应用，需要加载的JavaScript脚本越多、越大，这会导致应用的首屏加载时间非常长，进而降低了体验感。
+
+## nextTick原理
+### js执行机制
+由于js是单线程，js设计者把任务分为同步任务和异步任务，同步任务都在主线程上排队执行，前面任务没有执行完成，后面的任务会一直等待；异步任务则是挂在在一个任务队列里，等待主线程所有任务执行完成后，通知任务队列可以把可执行的任务放到主线程执行。异步任务放到主线程执行完后，又通知任务队列把下一个异步任务放到主线程中执行。这个过程一直持续，直到异步任务执行完成，这个持续重复的过程就叫Event loop。而一次循环就是一次tick 。</br>
+在任务队列中的异步任务又可以分为两种microtast（微任务） 和 macrotask（宏任务）</br>
+microtast（微任务）：Promise， process.nextTick， Object.observe， MutationObserver</br>
+macrotask（宏任务）：script整体代码、setTimeout、 setInterval等</br>
+执行优先级上，先执行宏任务macrotask，再执行微任务mincrotask。
+
+[nextTick](https://juejin.cn/post/6844904169967452174)
+[js](https://segmentfault.com/a/1190000037516439)
+
+## vue 父子组件间的生命周期
+父组件 beforeCreate -> created -> beforeMount ->子组件 beforeCreate- created- beforeMount- mounted ->mounted;
+
+

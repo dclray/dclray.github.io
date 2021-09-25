@@ -10,6 +10,50 @@ String.prototype.myTrim = function(){
     return this.replace(/^\s\s*/,"").replace(/\s\s*$/,"")
 }
 ```
+### 发布订阅
+```javascript
+class Events{
+        constructor (){
+            this._events = {}
+        }
+        on (name,fn,...argOrg) {
+            if(!name || !fn){
+                return throw new Error("name/fn")
+            }
+            let fns = this._events[name] || [];
+            if(fns.find(item=>item.fnOrg === fn)){return}
+            this._events = fns.concat({
+                fn:(...args)=>{fn.apply(null,[...argOrg,...args])},
+                fnOrg:fn
+            })
+        }
+        emit(name,...args){
+            (this._events[name] || []).forEach((item)=>{
+                item.fn(...args)
+            })
+        }
+        off(name,fn){
+            if(arguments.length === 0){
+                this._events = {}
+            }
+            if(arguments.length ===1){
+                delete this._events[name]
+            }
+            let fns = this._events[name] || [];
+            this._events[name] = fns.filter(item=>{
+                item.fnOrg ! == fn
+            })
+        }
+        once(name,fn,...argOrg){
+            let onFn = (...args)=>{
+                fn.apply(null,args)
+                this.off(name,onFn)
+            }
+            
+            this.on(name,onFn,...argOrg)
+        }
+    }
+```
 ### 实现deepClone
 ``` javascript
 function deepClone(arg){
@@ -449,5 +493,32 @@ createPerson('Devin').sleep(10000).eat('dinner').eat('supper')
 // console.log("cache.get(1)", cache.get(1))// 返回 -1 (未找到)
 // console.log("cache.get(3)", cache.get(3))// 返回  3
 // console.log("cache.get(4)", cache.get(4))// 返回  4
+```
+
+## 随机，生成100个，5位随机码，每个数中不能有重复的数字
+```javascript
+    function randomNum(num,length){
+        let set = new Set();
+        for(let i =0 ;i<num ;i++){
+            while(true){
+                let a = new Set();
+                for(let j =0 ;j < length; j++){
+                    while(true){
+                        let item = Math.floor(Math.random()*10);
+                        if(!a.has(item)){
+                            a.add(item)
+                            break;
+                        } 
+                    }
+                }
+               let val = [...a].join("")
+               if(!set.has(val)){
+                   set.add(val);
+                   break;
+               }
+            }
+        }
+        return [...set]
+    }
 ```
 
