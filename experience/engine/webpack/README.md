@@ -22,3 +22,7 @@ webpack核心，loader处理非JS文件，那么插件可以有更广泛的用�
 ## chunk
 被entry所依赖的额外的代码块，同样可以包含一个或者多个文件。chunk也就是一个个的JS文件，在异步加载中用处很大。chunk实际上就是webpack打包后的产物，如果你不想最后生成一个包含所有的bundle，那么可以生成一个个的chunk，并通过按需加载引入。同时它还能够通过插件提取公共依赖，生成公共chunk，避免多个bundle中有多个相同的依赖代码。
 
+## dev热更新慢，打包慢
+按需加载
+[分割代码按需加载](https://webpack.wuhaolin.cn/4%E4%BC%98%E5%8C%96/4-12%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD.html)
+[揭秘webpack按需加载原理](https://juejin.cn/post/6850418111599165448)

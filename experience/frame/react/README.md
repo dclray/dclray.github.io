@@ -10,3 +10,6 @@ class components
 - this
 - super()
 - 共享非视觉逻辑
+
+## 数据不可变
+[为什么不可变性对React很重要？](https://python.freelycode.com/contribution/detail/179)
