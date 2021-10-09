@@ -5,7 +5,7 @@ sidebar: auto
 ---
 JavaScript 是 Web 的编程语言。所有现代的 HTML 页面都使用 JavaScript。JavaScript 非常容易学。
 ::: tip 
-本文档主要是梳理JavaScript中常用的概念
+本文档主要是梳理JavaScript中常用的概念 ,jacascript BOM DOM Ecmascript
 :::
 本栏的主要内容如下：
 

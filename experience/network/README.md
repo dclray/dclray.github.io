@@ -12,3 +12,5 @@ sidebar: auto
 - [OSI 7层模型和TCP/IP 4层模型](./netmodle.md)
 - [TCP](./tcp.md)
 - [三次握手四次挥手](./tcpconnect.md)
+
+[HTTP灵魂之问，巩固你的 HTTP 知识体系](https://juejin.cn/post/6844904100035821575)

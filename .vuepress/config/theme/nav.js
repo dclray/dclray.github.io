@@ -197,7 +197,9 @@ module.exports = {
                 children:[
                     ["webpack/","Webpack导航"],
                     "webpack/flow",
-                    "webpack/principle"
+                    "webpack/principle",
+                    "webpack/codesplit",
+                    "webpack/treeshaking",
                 ]
             }
            

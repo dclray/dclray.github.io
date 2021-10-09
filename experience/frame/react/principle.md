@@ -63,3 +63,5 @@ React中使用双缓存来完成Fiber树的构建和替换对应DOM树的创建�
 在React中做多同时存在两颗Fiber树，当前屏幕上显示内容对应的Fiber树称为current Fiber树，正在内存中构建的Fiber树称为workInProgress Fiber树。
 current Fiber树中的Fiber节点被称为current fiber，workInProgress Fiber树中的Fiber节点被称为workInProgress fiber，他们通过alternate属性连接。</br>
 React应用的根节点通过使current指针在不同的Fiber树的rootFiber间切换来完成current Fiber树指向的切换。
+## diff
+
