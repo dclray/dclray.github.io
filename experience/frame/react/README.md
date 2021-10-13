@@ -13,3 +13,8 @@ class components
 
 ## 数据不可变
 [为什么不可变性对React很重要？](https://python.freelycode.com/contribution/detail/179)
+
+## react diff
+1. tree diff
+2. component diff
+3. element diff

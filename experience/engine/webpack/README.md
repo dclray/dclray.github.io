@@ -25,7 +25,7 @@ webpack核心，loader处理非JS文件，那么插件可以有更广泛的用�
 1. code-spliting
 2. tree-shaking
 ## dev热更新慢，打包慢 
-按需加载
+按需加载 （webpackChunkName)
 [分割代码按需加载](https://webpack.wuhaolin.cn/4%E4%BC%98%E5%8C%96/4-12%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD.html)
 [揭秘webpack按需加载原理](https://juejin.cn/post/6850418111599165448)
 
@@ -33,3 +33,9 @@ webpack核心，loader处理非JS文件，那么插件可以有更广泛的用�
 vendor 商贩
 external 外部
 
+## webpack 插件
+1. terser-webpack-plugin 压缩
+2. mini-cs-extract-plugin 提取js中引入的css文件，通过link添加到头部
+3. html-webpack-plugin  根据模板自动生成html代码，并自动引用css和js文件
+4. webpack-plugin-import 组件按需加载
+5. optimize-css-assets-webpack-plugin 压缩css代码

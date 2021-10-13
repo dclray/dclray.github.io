@@ -93,6 +93,7 @@ module.exports = {
                 collapsable:false,
                 children:[
                     ["","数据机构和算法导航"],
+                    "structure",
                     "algorithm"
                 ]
             },
@@ -123,7 +124,8 @@ module.exports = {
                     "tcpconnect",
                     "http",
                     "websocket",
-                    "security"
+                    "security",
+                    "xhr"
                 ]
             },  
             
@@ -140,7 +142,8 @@ module.exports = {
             {
                 title:"CSS",
                 children:[
-                    ["css/","CSS导航"]
+                    ["css/","CSS导航"],
+                    "css/layout"
                 ]
             },  
             {

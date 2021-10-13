@@ -16,4 +16,8 @@ vue和react的diff算法，都是忽略跨级比较，只做同级比较。vue d
  setState -> re-render(beginWork 递 & completeWork归)-> commit
 
 ## qiankun
+路由：Single-Spa</br>
+js隔离：JS沙箱 快照沙箱</br>
+样式隔离：Shadow DOM</br>
+应用通信：　1.发布／订阅模式，2.props　3.基于URL</br>
 [qiankun发展](http://www.360doc.com/content/21/0406/11/11604731_970825947.shtml)

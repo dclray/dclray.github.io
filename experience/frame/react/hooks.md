@@ -71,7 +71,9 @@ useReducer
 - 需要更加可以预测和可以维护的state架构
 ## useRef和forwardRef
 useRef返回一个可变的ref对象，其.current属性被初始化为传入的参数。返回的ref对象在组件的整个生命周期内保持不变。这个ref对象只有一个current属性，他的地址一直不变。
-useRef变化不会主动使页面渲染，可以将current变化的操作放在useState或者useReducer之前。
+useRef变化不会主动使页面渲染，可以将current变化的操作放在useState或者useReducer之前。</br>
+想在函数组件中使用ref，就一定会用到forwardRef。</br>
+在函数组件中，props无法传递ref属性，而forwardRef可以多接受一个ref参数，从而实现ref在函数组件中的传递。</br>
 ```javascript
     function CustomTextInput(props){
         const textInput = useRef(null);

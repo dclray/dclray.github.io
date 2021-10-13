@@ -63,5 +63,17 @@ React中使用双缓存来完成Fiber树的构建和替换对应DOM树的创建�
 在React中做多同时存在两颗Fiber树，当前屏幕上显示内容对应的Fiber树称为current Fiber树，正在内存中构建的Fiber树称为workInProgress Fiber树。
 current Fiber树中的Fiber节点被称为current fiber，workInProgress Fiber树中的Fiber节点被称为workInProgress fiber，他们通过alternate属性连接。</br>
 React应用的根节点通过使current指针在不同的Fiber树的rootFiber间切换来完成current Fiber树指向的切换。
-## diff
+## react diff
+**tree diff**:</br>
+- 两棵树只对同一层级节点进行比较，只要该节点不存在了，那么该节点与其子节点会被完全删除，不在进行比较
+**component diff**:</br>
+- 同类型的组件，按照tree diff 比较virtual dom
+- 同类型组件，组件A转化为了组件B，如果virtual dom无变化，可以通过shouldComponentUpdate方法来判断是否重新渲染
+- 不同类型的组件，那么diff算法会把改变的组件判断为dirty component从而替换整个组件的所有节点
+**element diff**:</br>
+- 插入：新的组件不在原来的tree中，而是全新的节点，则进行插入操作
+- 删除：组件在原来的tree中，但是更新了，则进行删除操作。
+- 移动：组件存在原来的tree中，但是位置发生改变，如果没有key值进行区分，则删除旧的，插入新的，如果存在唯一key值，进行移动操作
+
+缺点，如果是最后一个到最前面的一个，则所有的element都要发生变动，会造成性能问题
 
