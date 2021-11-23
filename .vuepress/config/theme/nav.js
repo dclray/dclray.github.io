@@ -204,6 +204,14 @@ module.exports = {
                     "webpack/codesplit",
                     "webpack/treeshaking",
                 ]
+            },
+            {
+                title:"compiler",
+                collapsable:false,
+                children:[
+                    ["tools/","编译工具"],
+                    "tools/commit",
+                ]
             }
            
         ],

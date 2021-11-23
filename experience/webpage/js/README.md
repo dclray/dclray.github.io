@@ -83,6 +83,9 @@ null 作为一个Object类型的变量存储在栈内存中，因为堆内存存
 ## 事件捕获和冒泡
 addEventListener true 表示在捕获阶段执行回调函数 false表示在冒泡阶段执行回调函数</br>
 事件代理(事件委托)</br>
+回调函数中的this指向当前元素</br>
+第三个参数涉及到冒泡和捕获，是true时为捕获，是false则为冒泡。
+或者是一个对象{passive: true}，针对的是Safari浏览器，禁止/开启使用滚动的时候要用到。</br>
 
 1. 阻止冒泡</br>
 e.stopPropagation()阻止冒泡</br>
